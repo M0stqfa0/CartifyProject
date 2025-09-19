@@ -5,12 +5,15 @@ from profile_frame import ProfilePage
 from cart_page import CartPage
 from utils import TITLE_FONT, BUTTON_FONT
 
+
 class UserHomePage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.selected_products = set()
+
+        self.item_quantities = {}
         self.cart_products = []
+        self.product_widgets = {}
 
         # ================== Header Frame ==================
         header = ctk.CTkFrame(self, fg_color="#37353E", corner_radius=0)
@@ -24,7 +27,9 @@ class UserHomePage(ctk.CTkFrame):
                                   fg_color="#1f1f1f", text_color="#D3DAD9")
         search_bar.grid(row=0, column=1, padx=(0, 5), pady=10, sticky="ew")
 
-        search_btn = ctk.CTkButton(header, text="", image=ctk.CTkImage(dark_image=Image.open("images/magnifying-glass(2).png"), size=(30, 30)),
+        search_btn = ctk.CTkButton(header, text="",
+                                   image=ctk.CTkImage(dark_image=Image.open("images/magnifying-glass(2).png"),
+                                                      size=(30, 30)),
                                    width=80, height=40, fg_color="transparent", hover_color="#48464f")
         search_btn.grid(row=0, column=2, padx=(5, 3), pady=10)
 
@@ -36,7 +41,9 @@ class UserHomePage(ctk.CTkFrame):
 
         # ================== Profile button ==================
         profile_btn = ctk.CTkButton(header, text="", width=80, height=40,
-                                    image=ctk.CTkImage(dark_image=Image.open("images/vectorstock_42797441-removebg-preview.png"), size=(45, 45)),
+                                    image=ctk.CTkImage(
+                                        dark_image=Image.open("images/vectorstock_42797441-removebg-preview.png"),
+                                        size=(45, 45)),
                                     fg_color="transparent", hover_color="#48464f",
                                     command=self.go_to_profile, cursor="arrow")
         profile_btn.grid(row=0, column=4, padx=(3, 3), pady=10)
@@ -82,41 +89,95 @@ class UserHomePage(ctk.CTkFrame):
         title_label = ctk.CTkLabel(right_panel, text="All Products", font=("Segoe UI", 22, "bold"), height=35)
         title_label.pack(fill="x", padx=10, pady=(10, 0))
 
-        self.products_frame = ctk.CTkScrollableFrame(right_panel, fg_color="#2d2d2d", corner_radius=10, width=600, height=500)
+        self.products_frame = ctk.CTkScrollableFrame(right_panel, fg_color="#2d2d2d", corner_radius=10, width=600,
+                                                     height=500)
         self.products_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-        add_cart_btn = ctk.CTkButton(right_panel, text="Add to cart", font=("Segoe UI", 22, 'bold'),
-                                     fg_color="#2d2d2d", hover_color="#48464f", text_color="#D3DAD9",
-                                     command=self.add_to_cart)
-        add_cart_btn.pack(anchor="center", pady=(5, 15))
+        self.display_products(self.products_data)
 
-        self.display_products(self.products_data) # <--- Show all products initially
+    def _add_item(self, product):
+        product_name = product['name']
 
-    # ================== Display Products ==================
+        current_quantity = self.item_quantities.get(product_name, 0)
+        self.item_quantities[product_name] = current_quantity + 1
+
+        found = any(item['name'] == product_name for item in self.cart_products)
+        if not found:
+            self.cart_products.append(product)
+
+        widgets = self.product_widgets[product_name]
+        widgets['count_label'].configure(text=str(self.item_quantities[product_name]))
+        widgets['remove_btn'].pack(side="left", padx=5)
+        widgets['count_label'].pack(side="left", padx=5)
+
+    def _remove_item(self, product):
+        product_name = product['name']
+
+        current_quantity = self.item_quantities.get(product_name, 0)
+        if current_quantity <= 0:
+            return
+
+        self.item_quantities[product_name] = current_quantity - 1
+
+        if self.item_quantities[product_name] == 0:
+            self.cart_products = [p for p in self.cart_products if p['name'] != product_name]
+            widgets = self.product_widgets[product_name]
+            widgets['remove_btn'].pack_forget()
+            widgets['count_label'].pack_forget()
+        else:
+            widgets = self.product_widgets[product_name]
+            widgets['count_label'].configure(text=str(self.item_quantities[product_name]))
+
+    def reset_item_quantity(self, product_name):
+        if product_name in self.item_quantities:
+            self.item_quantities.pop(product_name)
+
+        self.cart_products = [p for p in self.cart_products if p['name'] != product_name]
+
+        self.display_products(self.products_data)
+
     def display_products(self, products):
         for widget in self.products_frame.winfo_children():
             widget.destroy()
+        self.product_widgets.clear()
 
-        def toggle_selection(i, frame):
-            if i in self.selected_products:
-                self.selected_products.remove(i)
-                frame.configure(fg_color="#3b3b3b")
-            else:
-                self.selected_products.add(i)
-                frame.configure(fg_color="#555555")
-
-        for i, product in enumerate(products):
+        for product in products:
+            product_name = product['name']
             product_card = ctk.CTkFrame(self.products_frame, fg_color="#3b3b3b", corner_radius=8)
             product_card.pack(fill="x", padx=5, pady=5)
-            product_card.bind("<Button-1>", lambda e, i=i, f=product_card: toggle_selection(i, f))
 
-            ctk.CTkLabel(product_card, text=product["name"], text_color="white", font=("Segoe UI", 16), anchor="w").pack(anchor="w", padx=10, pady=(10, 0))
-            ctk.CTkLabel(product_card, text=product["description"], text_color="white", font=("Segoe UI", 12), anchor="w").pack(anchor="w", padx=10, pady=(0, 0))
-            ctk.CTkLabel(product_card, text=f"${product['price']}", text_color="white").pack(side="right", padx=10, pady=10)
+            info_frame = ctk.CTkFrame(product_card, fg_color="transparent")
+            info_frame.pack(side="left", fill="x", expand=True, padx=10, pady=5)
 
+            ctk.CTkLabel(info_frame, text=product["name"], text_color="white", font=("Segoe UI", 16, "bold"),
+                         anchor="w").pack(fill="x")
+            ctk.CTkLabel(info_frame, text=product["description"], text_color="lightgray", font=("Segoe UI", 12),
+                         anchor="w").pack(fill="x")
+            ctk.CTkLabel(info_frame, text=f"${product['price']}", text_color="white", font=("Segoe UI", 14, "bold"),
+                         anchor="w").pack(fill="x", pady=(5, 0))
 
+            controls_frame = ctk.CTkFrame(product_card, fg_color="transparent")
+            controls_frame.pack(side="right", padx=10)
 
-    # ================== Filter Products ==================
+            add_btn = ctk.CTkButton(controls_frame, text="+", width=30, font=("Segoe UI", 18, "bold"), fg_color="transparent", hover_color="#48464f",
+                                    command=lambda p=product: self._add_item(p))
+            add_btn.pack(side="right", padx=5)
+
+            count_label = ctk.CTkLabel(controls_frame, text="", width=25, font=("Segoe UI", 18))
+            remove_btn = ctk.CTkButton(controls_frame, text="-", width=30, font=("Segoe UI", 18, "bold"), fg_color="transparent",hover_color="#48464f",
+                                       command=lambda p=product: self._remove_item(p))
+
+            quantity = self.item_quantities.get(product_name, 0)
+            if quantity > 0:
+                count_label.configure(text=str(quantity))
+                remove_btn.pack(side="left", padx=5)
+                count_label.pack(side="left", padx=5)
+
+            self.product_widgets[product_name] = {
+                'count_label': count_label,
+                'remove_btn': remove_btn
+            }
+
     def filter_products(self, category):
         if category == "Home":
             filtered = self.products_data
@@ -124,21 +185,17 @@ class UserHomePage(ctk.CTkFrame):
             filtered = [p for p in self.products_data if p["category"].strip().lower() == category.strip().lower()]
         self.display_products(filtered)
 
-    # ================== Cart ==================
-    def add_to_cart(self):
-        for i in self.selected_products:
-            product_data = self.products_data[i]
-            if product_data not in self.cart_products:
-                self.cart_products.append(product_data)
-        self.selected_products.clear()
-
     def go_to_cart(self):
+        for product in self.cart_products:
+            product['quantity'] = self.item_quantities.get(product['name'], 0)
+
         cart_page = self.controller.frames.get(CartPage)
         if cart_page:
-            cart_page.update_cart(self.cart_products)
+            # ================== Send only items that have a quantity > 0 ==================
+            final_cart = [p for p in self.cart_products if p['quantity'] > 0]
+            cart_page.update_cart(final_cart)
         self.controller.show_frame(CartPage)
 
-    # ================== Profile Icon ==================
     def go_to_profile(self):
         profile_page = self.controller.frames.get(ProfilePage)
         if profile_page is None:
@@ -146,3 +203,8 @@ class UserHomePage(ctk.CTkFrame):
             self.controller.frames[ProfilePage] = profile_page
             profile_page.grid(row=0, column=0, sticky="nsew")
         self.controller.show_frame(ProfilePage)
+
+    def clear_cart_data(self):
+        self.item_quantities.clear()
+        self.cart_products.clear()
+        self.display_products(self.products_data)
