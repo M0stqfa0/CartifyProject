@@ -1,0 +1,41 @@
+[
+    {"name": "Blender", "description": "High-speed kitchen blender", "price": 45, "orders": 12, "category": "Appliances"},
+    {"name": "Microwave Oven", "description": "900W microwave oven", "price": 120, "orders": 20, "category": "Appliances"},
+    {"name": "Coffee Maker", "description": "Automatic coffee brewing machine", "price": 80, "orders": 15, "category": "Appliances"},
+
+    {"name": "Smartphone X", "description": "Latest 5G smartphone", "price": 699, "orders": 50, "category": "Electronics"},
+    {"name": "Laptop Pro", "description": "High-performance laptop", "price": 1200, "orders": 30, "category": "Electronics"},
+    {"name": "Wireless Headphones", "description": "Noise-cancelling headphones", "price": 150, "orders": 40, "category": "Electronics"},
+
+    {"name": "Leather Jacket", "description": "Stylish black leather jacket", "price": 200, "orders": 18, "category": "Fashion"},
+    {"name": "Sneakers", "description": "Comfortable running shoes", "price": 90, "orders": 35, "category": "Fashion"},
+    {"name": "Designer Handbag", "description": "Elegant handbag for daily use", "price": 250, "orders": 22, "category": "Fashion"},
+
+    {"name": "Python Programming", "description": "Learn Python from scratch", "price": 25, "orders": 45, "category": "Books"},
+    {"name": "Data Science Guide", "description": "Comprehensive data science book", "price": 35, "orders": 30, "category": "Books"},
+    {"name": "Fiction Novel", "description": "Bestselling fictional story", "price": 15, "orders": 40, "category": "Books"},
+
+    {"name": "Basketball", "description": "Official size basketball", "price": 30, "orders": 25, "category": "Sports"},
+    {"name": "Yoga Mat", "description": "Eco-friendly yoga mat", "price": 20, "orders": 15, "category": "Sports"},
+    {"name": "Tennis Racket", "description": "Professional tennis racket", "price": 80, "orders": 10, "category": "Sports"},
+
+    {"name": "Gaming Console", "description": "Next-gen gaming console", "price": 499, "orders": 50, "category": "Gaming"},
+    {"name": "VR Headset", "description": "Immersive virtual reality headset", "price": 350, "orders": 28, "category": "Gaming"},
+    {"name": "Gaming Chair", "description": "Ergonomic chair for gamers", "price": 150, "orders": 20, "category": "Gaming"},
+
+    {"name": "Sofa Set", "description": "Comfortable 3-piece sofa", "price": 600, "orders": 12, "category": "Furniture"},
+    {"name": "Dining Table", "description": "Wooden dining table for 6", "price": 350, "orders": 15, "category": "Furniture"},
+    {"name": "Office Chair", "description": "Ergonomic office chair", "price": 120, "orders": 20, "category": "Furniture"},
+
+    {"name": "Rice Pack", "description": "Premium long-grain rice", "price": 10, "orders": 60, "category": "Groceries"},
+    {"name": "Olive Oil", "description": "Extra virgin olive oil", "price": 15, "orders": 25, "category": "Groceries"},
+    {"name": "Cereal Box", "description": "Healthy breakfast cereal", "price": 8, "orders": 30, "category": "Groceries"},
+
+    {"name": "Lego Set", "description": "Creative building blocks set", "price": 50, "orders": 20, "category": "Toys"},
+    {"name": "Puzzle Game", "description": "1000-piece challenging puzzle", "price": 20, "orders": 15, "category": "Toys"},
+    {"name": "Dollhouse", "description": "Miniature wooden dollhouse", "price": 45, "orders": 18, "category": "Toys"},
+
+    {"name": "Lipstick Set", "description": "Long-lasting lipstick kit", "price": 25, "orders": 40, "category": "Beauty"},
+    {"name": "Face Cream", "description": "Moisturizing face cream", "price": 30, "orders": 35, "category": "Beauty"},
+    {"name": "Perfume", "description": "Floral scent perfume", "price": 50, "orders": 28, "category": "Beauty"}
+]

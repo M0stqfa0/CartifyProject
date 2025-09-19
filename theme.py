@@ -1,0 +1,15 @@
+BG_COLOR = "#E7F2EF"
+NAV_BAR = "#19183B"
+TEXT_COLOR = "#E7F2EF"
+SEC_TEXT_COLOR = "#708993"
+LABEL_BG = "#A1C2BD"
+BORDER_COLOR = "#708993"
+BUTTON_COLOR = "#A1C2BD"
+BUTTON_ACTIVE = "#45A049"
+SUB_HEADER = "#343363"
+# Fonts
+TITLE_FONT = ("Segoe UI", 40, 'bold')
+SUBTITLE_FONT = ("Segoe UI", 18, 'bold')
+LABEL_FONT = ("Segoe UI", 12)
+BUTTON_FONT = ("Segoe UI", 20)
+ENTRY_FONT = ("Segoe UI", 14)             # Entry text
