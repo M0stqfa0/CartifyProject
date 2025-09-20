@@ -141,9 +141,9 @@ class UserHomePage(ctk.CTkFrame):
         self.product_widgets.clear()
         for product in products:
             product_name = product['name']
-            product_card = ctk.CTkFrame(self.products_frame, fg_color="#3b3b3b", corner_radius=8);
+            product_card = ctk.CTkFrame(self.products_frame, fg_color="#3b3b3b", corner_radius=8)
             product_card.pack(fill="x", padx=5, pady=5)
-            info_frame = ctk.CTkFrame(product_card, fg_color="transparent");
+            info_frame = ctk.CTkFrame(product_card, fg_color="transparent")
             info_frame.pack(side="left", fill="x", expand=True, padx=10, pady=5)
             ctk.CTkLabel(info_frame, text=product["name"], text_color="white", font=("Segoe UI", 16, "bold"),
                          anchor="w").pack(fill="x")
@@ -151,11 +151,11 @@ class UserHomePage(ctk.CTkFrame):
                          anchor="w").pack(fill="x")
             ctk.CTkLabel(info_frame, text=f"${product['price']}", text_color="white", font=("Segoe UI", 14, "bold"),
                          anchor="w").pack(fill="x", pady=(5, 0))
-            controls_frame = ctk.CTkFrame(product_card, fg_color="transparent");
+            controls_frame = ctk.CTkFrame(product_card, fg_color="transparent")
             controls_frame.pack(side="right", padx=10)
             add_btn = ctk.CTkButton(controls_frame, text="+", width=30, font=("Segoe UI", 18, "bold"),
                                     fg_color="transparent", hover_color="#48464f",
-                                    command=lambda p=product: self.add_item(p));
+                                    command=lambda p=product: self.add_item(p))
             add_btn.pack(side="right", padx=5)
             count_label = ctk.CTkLabel(controls_frame, text="", width=25, font=("Segoe UI", 18))
             remove_btn = ctk.CTkButton(controls_frame, text="-", width=30, font=("Segoe UI", 18, "bold"),
@@ -163,8 +163,8 @@ class UserHomePage(ctk.CTkFrame):
                                        command=lambda p=product: self.remove_item(p))
             quantity = self.item_quantities.get(product_name, 0)
             if quantity > 0:
-                count_label.configure(text=str(quantity));
-                remove_btn.pack(side="left", padx=5);
+                count_label.configure(text=str(quantity))
+                remove_btn.pack(side="left", padx=5)
                 count_label.pack(side="left", padx=5)
             self.product_widgets[product_name] = {'count_label': count_label, 'remove_btn': remove_btn}
 

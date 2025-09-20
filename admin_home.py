@@ -154,33 +154,33 @@ class AdminHomePage(ctk.CTkFrame):
         self.product_widgets.clear()
         for product in products:
             product_name = product['name']
-            product_card = ctk.CTkFrame(self.products_frame, fg_color="#3b3b3b", corner_radius=8);
+            product_card = ctk.CTkFrame(self.products_frame, fg_color="#3b3b3b", corner_radius=8)
             product_card.pack(fill="x", padx=5, pady=5)
-            display_frame = ctk.CTkFrame(product_card, fg_color="transparent");
+            display_frame = ctk.CTkFrame(product_card, fg_color="transparent")
             display_frame.pack(side="left", fill="x", expand=True, padx=10, pady=5)
             ctk.CTkLabel(display_frame, text=product["name"], font=("Segoe UI", 16, "bold"), anchor="w").pack(fill="x")
             ctk.CTkLabel(display_frame, text=product["description"], font=("Segoe UI", 12), anchor="w").pack(fill="x")
             ctk.CTkLabel(display_frame, text=f"${product['price']}", font=("Segoe UI", 14, "bold"), anchor="w").pack(
                 fill="x", pady=(5, 0))
             edit_frame = ctk.CTkFrame(product_card, fg_color="transparent")
-            name_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12));
+            name_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12))
             name_entry.pack(fill="x", pady=2)
-            desc_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12));
+            desc_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12))
             desc_entry.pack(fill="x", pady=2)
-            price_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12));
+            price_entry = ctk.CTkEntry(edit_frame, font=("Segoe UI", 12))
             price_entry.pack(fill="x", pady=2)
-            controls_frame = ctk.CTkFrame(product_card, fg_color="transparent");
+            controls_frame = ctk.CTkFrame(product_card, fg_color="transparent")
             controls_frame.pack(side="right", padx=10)
             toggle_edit_btn = ctk.CTkButton(controls_frame, text="", width=30,
                                             image=ctk.CTkImage(dark_image=Image.open("images/pencil.png"),
                                                                size=(25, 25)),
                                             command=lambda name=product_name: self.on_toggle_button_click(name),
-                                            fg_color="transparent", hover_color="#48464f");
+                                            fg_color="transparent", hover_color="#48464f")
             toggle_edit_btn.pack(pady=2)
             remove_btn = ctk.CTkButton(controls_frame, text="", width=30,
                                        image=ctk.CTkImage(dark_image=Image.open("images/trash.png"), size=(25, 25)),
                                        command=lambda p=product: self.remove_product(p), fg_color="transparent",
-                                       hover_color="#48464f");
+                                       hover_color="#48464f")
             remove_btn.pack(pady=2)
             cancel_btn = ctk.CTkButton(controls_frame, text="", width=30, fg_color="transparent", hover_color="#48464f",
                                        image=ctk.CTkImage(dark_image=Image.open("images/close (1).png"), size=(20, 20)),
