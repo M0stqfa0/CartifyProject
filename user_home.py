@@ -1,7 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
 import json
-from profile_frame import ProfilePage
+
 from cart_page import CartPage
 from utils import TITLE_FONT, BUTTON_FONT
 
@@ -95,7 +95,7 @@ class UserHomePage(ctk.CTkFrame):
 
         self.display_products(self.products_data)
 
-    def _add_item(self, product):
+    def add_item(self, product):
         product_name = product['name']
 
         current_quantity = self.item_quantities.get(product_name, 0)
@@ -110,7 +110,7 @@ class UserHomePage(ctk.CTkFrame):
         widgets['remove_btn'].pack(side="left", padx=5)
         widgets['count_label'].pack(side="left", padx=5)
 
-    def _remove_item(self, product):
+    def remove_item(self, product):
         product_name = product['name']
 
         current_quantity = self.item_quantities.get(product_name, 0)
@@ -160,12 +160,12 @@ class UserHomePage(ctk.CTkFrame):
             controls_frame.pack(side="right", padx=10)
 
             add_btn = ctk.CTkButton(controls_frame, text="+", width=30, font=("Segoe UI", 18, "bold"), fg_color="transparent", hover_color="#48464f",
-                                    command=lambda p=product: self._add_item(p))
+                                    command=lambda p=product: self.add_item(p))
             add_btn.pack(side="right", padx=5)
 
             count_label = ctk.CTkLabel(controls_frame, text="", width=25, font=("Segoe UI", 18))
             remove_btn = ctk.CTkButton(controls_frame, text="-", width=30, font=("Segoe UI", 18, "bold"), fg_color="transparent",hover_color="#48464f",
-                                       command=lambda p=product: self._remove_item(p))
+                                       command=lambda p=product: self.remove_item(p))
 
             quantity = self.item_quantities.get(product_name, 0)
             if quantity > 0:
@@ -196,12 +196,15 @@ class UserHomePage(ctk.CTkFrame):
             cart_page.update_cart(final_cart)
         self.controller.show_frame(CartPage)
 
+        # In user_home.py
+
     def go_to_profile(self):
+        from profile_frame import ProfilePage
         profile_page = self.controller.frames.get(ProfilePage)
-        if profile_page is None:
-            profile_page = ProfilePage(self.controller.container, self.controller)
-            self.controller.frames[ProfilePage] = profile_page
-            profile_page.grid(row=0, column=0, sticky="nsew")
+        if profile_page:
+            # This is the line that tells the profile to update its info
+            profile_page.refresh_data()
+
         self.controller.show_frame(ProfilePage)
 
     def clear_cart_data(self):

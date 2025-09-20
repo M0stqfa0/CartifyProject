@@ -1,5 +1,6 @@
 from tkinter import messagebox
 from utils import *
+glob_current_user = {}
 
 class LoginFrame(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -51,14 +52,43 @@ class LoginFrame(ctk.CTkFrame):
         self.controller.show_frame(RegisterFrame)
 
     def login_user(self):
+        global glob_current_user # To modify the global variable
         email = self.mail_field.get().strip()
         password = self.password_field.get().strip()
+
+        if not email or not password:
+            messagebox.showerror("Missing Field", "Please fill all fields.")
+            return
+
         if email == "admin@gmail.com" and password == "admin123":
-            from user_home import UserHomePage
+            from admin_home import AdminHomePage
             messagebox.showinfo("Welcome", "Welcome, Admin!")
-            # Clear the entry fields after login
             self.mail_field.delete(0, "end")
             self.password_field.delete(0, "end")
-            self.controller.show_frame(UserHomePage)
+            self.controller.show_frame(AdminHomePage)
+            return
+
+        try:
+            with open("user_data.json", "r") as f:
+                users_data = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            users_data = []
+
+        found_user = None
+        for user in users_data:
+            if user.get("email") == email:
+                found_user = user
+                break # Found the user, stop searching
+
+        if found_user:
+            if password == found_user.get("password"):
+                from user_home import UserHomePage
+                glob_current_user = found_user # Set the global user
+                messagebox.showinfo("Welcome", f"Welcome, {found_user.get('name')}!")
+                self.mail_field.delete(0, "end")
+                self.password_field.delete(0, "end")
+                self.controller.show_frame(UserHomePage)
+            else:
+                messagebox.showerror("Invalid Credentials", "Incorrect password.")
         else:
-            messagebox.showerror("Error", "Invalid credentials")
+            messagebox.showerror("Error", "Email not found!\nPlease create an account.")

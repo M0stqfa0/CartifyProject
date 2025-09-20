@@ -1,10 +1,42 @@
-{
-    "name": "",
-    "phone": "",
-    "email": "",
-    "gender": "Prefer not to say",
-    "governorate": "Egypt",
-    "password": "",
-    "age": "",
-    "national_id": ""
-}
+[
+    {
+        "email": "ahmed.salem@example.com",
+        "password": "ahmed456",
+        "name": "Ahmed Sale",
+        "phone": "01023456789",
+        "gender": "Male",
+        "governorate": "Alexandria",
+        "age": "25",
+        "national_id": "29812345678901"
+    },
+    {
+        "email": "sara.kamel@example.com",
+        "password": "sara789",
+        "name": "Sara Kamel",
+        "phone": "01198765432",
+        "gender": "Female",
+        "governorate": "Giza",
+        "age": 22,
+        "national_id": "30198765432109"
+    },
+    {
+        "email": "mohamed.adel@example.com",
+        "password": "mohamed99",
+        "name": "Mohamed Adel",
+        "phone": "01234567890",
+        "gender": "Male",
+        "governorate": "Faiyum",
+        "age": 28,
+        "national_id": "29901234567890"
+    },
+    {
+        "email": "noor.hassan@example.com",
+        "password": "noor1234",
+        "name": "Noor Hassan",
+        "phone": "01567890123",
+        "gender": "Prefer not to say",
+        "governorate": "Mansoura",
+        "age": 26,
+        "national_id": "29767890123456"
+    }
+]

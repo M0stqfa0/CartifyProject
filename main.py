@@ -4,6 +4,7 @@ from register_frame import RegisterFrame
 from user_home import UserHomePage
 from cart_page import CartPage
 from profile_frame import ProfilePage
+from admin_home import AdminHomePage
 
 class App(ctk.CTk):
     def __init__(self):
@@ -23,7 +24,7 @@ class App(ctk.CTk):
 
         # ================== Any new frame should be stored here ==================
         self.frames = {}
-        for F in (LoginFrame, RegisterFrame, UserHomePage, CartPage, ProfilePage):
+        for F in (LoginFrame, RegisterFrame, UserHomePage, CartPage, ProfilePage,AdminHomePage):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
