@@ -2,8 +2,7 @@ import customtkinter as ctk
 from PIL import Image
 import json
 from tkinter import messagebox
-from utils import TITLE_FONT, BUTTON_FONT
-
+from theme import *
 
 class UserHomePage(ctk.CTkFrame):
     def __init__(self, parent, controller):

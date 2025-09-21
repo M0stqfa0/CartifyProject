@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from utils import TITLE_FONT, ENTRY_FONT, BUTTON_FONT
+from theme import *
 import json
 from tkinter import messagebox
 import login_frame

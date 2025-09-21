@@ -1,12 +1,22 @@
 [
     {
+        "email": "admin@gmail.com",
+        "password": "admin123",
+        "name": "admin",
+        "phone": "00000000000",
+        "gender": "M",
+        "governorate": "Cairo",
+        "age": 30,
+        "national_id": "00000000000000"
+    },
+    {
         "email": "ahmed.salem@example.com",
         "password": "ahmed456",
-        "name": "Ahmed Salem ahaisjdi",
+        "name": "Ahmed Salem",
         "phone": "01023456789",
         "gender": "Male",
         "governorate": "Alexandria",
-        "age": "25",
+        "age": 25,
         "national_id": "29812345678901"
     },
     {
@@ -38,5 +48,15 @@
         "governorate": "Mansoura",
         "age": 26,
         "national_id": "29767890123456"
+    },
+    {
+        "email": "mostafa@gmail.com",
+        "password": "123456",
+        "name": "Mostafa",
+        "phone": "01065207540",
+        "gender": "Male",
+        "governorate": "Faiyum",
+        "age": "20",
+        "national_id": "30602042302176"
     }
 ]

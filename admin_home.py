@@ -3,8 +3,7 @@ from PIL import Image
 import json
 from tkinter import messagebox
 from login_frame import LoginFrame
-from utils import TITLE_FONT, BUTTON_FONT
-
+from theme import *
 
 class AdminHomePage(ctk.CTkFrame):
     def __init__(self, parent, controller):

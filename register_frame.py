@@ -1,5 +1,7 @@
 from tkinter import messagebox
-from utils import *
+import customtkinter as ctk
+import json
+from theme import *
 
 class RegisterFrame(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -93,10 +95,29 @@ class RegisterFrame(ctk.CTkFrame):
         password = self.password_field.get()
         gender = self.gender_field.get()
         governorate = self.governorate_field.get()
+        age = self.age_field.get()
+        national_id = self.national_field.get()
 
         if not name or not phone or not email or not password or gender == "Gender" or governorate == "Governorate":
             messagebox.showerror("Missing Field", "Please fill all fields.")
             return
+
+        new_user ={ "email": email,
+                    "password": password,
+                    "name": name,
+                    "phone": phone,
+                    "gender": gender,
+                    "governorate": governorate,
+                    "age": age,
+                    "national_id": national_id}
+
+        with open("user_data.json", "r") as f:
+            users_data = json.load(f)
+
+        users_data.append(new_user)
+
+        with open("user_data.json", "w") as f:
+            json.dump(users_data, f, indent=4)
 
         messagebox.showinfo("Success", "Your account has been created successfully!")
         from login_frame import LoginFrame
