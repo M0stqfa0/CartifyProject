@@ -1,12 +1,5 @@
 [
     {
-        "name": "Microwave Oven",
-        "description": "900W microwave oven",
-        "price": 120,
-        "orders": 20,
-        "category": "Appliances"
-    },
-    {
         "name": "Coffee Maker",
         "description": "Automatic coffee brewing machine",
         "price": 80,
@@ -193,13 +186,6 @@
         "description": "Moisturizing face cream",
         "price": 30,
         "orders": 35,
-        "category": "Beauty"
-    },
-    {
-        "name": "Perfume",
-        "description": "Floral scent perfume",
-        "price": 50,
-        "orders": 28,
         "category": "Beauty"
     }
 ]

@@ -2,7 +2,6 @@ import customtkinter as ctk
 from PIL import Image
 import json
 from tkinter import messagebox
-# These imports are needed for the code to run
 from login_frame import LoginFrame
 from utils import TITLE_FONT, BUTTON_FONT
 
@@ -128,23 +127,19 @@ class AdminHomePage(ctk.CTkFrame):
             messagebox.showwarning("Selection Error", "Please select both a sort attribute and an order.")
             return
 
-        # Determine the key and reverse order for sorting
         key_attr = "name" if "Name" in sort_by_text else "price"
         key_func = lambda item: item[key_attr]
         reverse = (sort_order == "Descending")
 
-        # Sort the currently displayed list and update the view
         sorted_list = self.merge_sort(self.currently_displayed, key=key_func, reverse=reverse)
         self.display_products(sorted_list)
 
-    # --- NEW: Method to handle search logic ---
     def perform_search(self):
         search_term = self.search_bar.get().lower()
         if not search_term:
             self.display_products(self.products_data)
             return
 
-        # Simple linear search (as binary search requires a pre-sorted list and exact match)
         results = [p for p in self.products_data if search_term in p['name'].lower()]
         self.display_products(results)
 
