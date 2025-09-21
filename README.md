@@ -17,7 +17,7 @@ Local data: product data stored in products.json (easy to edit / extend).
 
 Custom, reusable widgets: EntryWidget and ComboboxWidget in utils.py to keep UI code consistent.
 
-
+```
 Cartify/
 │
 ├── main.py                # App entry + frame controller
@@ -32,7 +32,7 @@ Cartify/
 ├── user_data.json         # Users data
 ├── products.json          # Product data 
 └── README.md              # This file
-
+```
 
 Contributors & Roles
 
