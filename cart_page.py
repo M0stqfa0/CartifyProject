@@ -8,6 +8,7 @@ class CartPage(ctk.CTkFrame):
         super().__init__(parent)
         self.controller = controller
         self.cart_items = []
+        self.delivery_fee = 0
 
         # ================== Header ==================
         header = ctk.CTkFrame(self, fg_color="#37353E", corner_radius=0)
