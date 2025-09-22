@@ -36,7 +36,7 @@ Cartify/
 
 Contributors & Roles
 
-Mostafa Yasser — UI/UX, front-end implementation, CustomTkinter/Tkinter interface and styling, integration of pages.
+Mostafa Yasser — UI/UX, front-end implementation, CustomTkinter interface and styling, integration of pages.
 
 Yousef Said — Admin page features and related functionality (admin workflows, admin-side product management).
 
