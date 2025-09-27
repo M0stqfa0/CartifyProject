@@ -16,8 +16,9 @@ class AdminHomePage(ctk.CTkFrame):
         header = ctk.CTkFrame(self, fg_color="#37353E", corner_radius=0)
         header.pack(side="top", fill="x")
 
-        logo_label = ctk.CTkLabel(header, text="Cartify", text_color="#D3DAD9", font=TITLE_FONT)
-        logo_label.grid(row=0, column=0, padx=(15, 5), pady=10)
+        logo_label = ctk.CTkLabel(header, text="", image=ctk.CTkImage(dark_image=Image.open("images/header (2).png"),
+                                                                      size=(250, 80)), fg_color="transparent")
+        logo_label.grid(row=0, column=0)
 
         self.search_bar = ctk.CTkEntry(header, width=400, height=40, font=BUTTON_FONT, placeholder_text="Search...",
                                        fg_color="#1f1f1f", text_color="#D3DAD9")

@@ -1,6 +1,7 @@
 from tkinter import messagebox
 import customtkinter as ctk
 import json
+from PIL import Image
 from theme import *
 glob_current_user = {}
 
@@ -10,18 +11,17 @@ class LoginFrame(ctk.CTkFrame):
         self.controller = controller
 
         # ================== Main Frame ==================
-        content_frame = ctk.CTkFrame(self, width=700, height=600)
-        content_frame.place(relx=0.5, rely=0.5, anchor="center")
-        content_frame.pack_propagate(False)
+        content_frame = ctk.CTkFrame(self, width=700, height=900)
+        content_frame.pack(fill="x")
 
         # ================== Frame containing all content ==================
         form_frame = ctk.CTkFrame(content_frame, fg_color="transparent")
         form_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         # ================== Label & Subtitle ==================
-        logo_label = ctk.CTkLabel(form_frame, text="Cartify",
-                                  font=TITLE_FONT, text_color="white")
-        logo_label.pack(pady=(20, 10))
+        logo_label = ctk.CTkLabel(form_frame, text="", image=ctk.CTkImage(dark_image=Image.open("images/CartifyLogo.png"),
+                                                      size=(450, 240)), fg_color="transparent")
+        logo_label.pack()
 
         subtitle_label = ctk.CTkLabel(form_frame, text="Sign into your account",
                                       font=SUBTITLE_FONT, text_color=TEXT_COLOR)

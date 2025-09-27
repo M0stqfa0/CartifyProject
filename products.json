@@ -1,12 +1,5 @@
 [
     {
-        "name": "Coffee Maker",
-        "description": "Automatic coffee brewing machine",
-        "price": 80,
-        "orders": 15,
-        "category": "Appliances"
-    },
-    {
         "name": "Smartphone X",
         "description": "Latest 5G smartphone",
         "price": 699,

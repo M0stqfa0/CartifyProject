@@ -15,7 +15,7 @@ class ProfilePage(ctk.CTkFrame):
         # ================== Header ==================
         header = ctk.CTkFrame(self, fg_color="#37353E", corner_radius=0)
         header.pack(side="top", fill="x")
-        logo_label = ctk.CTkLabel(header, text="Cartify - Profile", text_color="#D3DAD9", font=TITLE_FONT)
+        logo_label = ctk.CTkLabel(header, text="Profile", text_color="#D3DAD9", font=TITLE_FONT)
         logo_label.grid(row=0, column=0, padx=15, pady=10)
         signout_btn = ctk.CTkButton(header, text="Sign Out", width=100, height=40, fg_color="#2d2d2d",
                                     hover_color="#48464f", command=self.sign_out)
@@ -168,6 +168,8 @@ class ProfilePage(ctk.CTkFrame):
 
     def sign_out(self):
         from login_frame import LoginFrame
+        user_name = login_frame.glob_current_user.get("name", "user")
+        messagebox.showinfo("Goodbye", f"See you soon, {user_name}!")
         login_frame.glob_current_user.clear()
         self.controller.show_frame(LoginFrame)
 

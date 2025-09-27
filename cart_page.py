@@ -14,7 +14,7 @@ class CartPage(ctk.CTkFrame):
         header = ctk.CTkFrame(self, fg_color="#37353E", corner_radius=0)
         header.pack(side="top", fill="x")
 
-        logo_label = ctk.CTkLabel(header, text="Cartify - Your Cart", text_color="#D3DAD9", font=TITLE_FONT)
+        logo_label = ctk.CTkLabel(header, text="Your Cart", text_color="#D3DAD9", font=TITLE_FONT)
         logo_label.grid(row=0, column=0, padx=(15, 25), pady=10)
 
         def back_to_home():

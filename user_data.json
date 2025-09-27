@@ -16,7 +16,7 @@
         "phone": "01023456789",
         "gender": "Male",
         "governorate": "Alexandria",
-        "age": 25,
+        "age": "25",
         "national_id": "29812345678901"
     },
     {
