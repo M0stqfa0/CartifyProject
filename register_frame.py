@@ -99,7 +99,7 @@ class RegisterFrame(ctk.CTkFrame):
         age = self.age_field.get()
         national_id = self.national_field.get()
 
-        if not name or not phone or not email or not password or gender == "Gender" or governorate == "Governorate":
+        if not name or not phone or not email or not national_id or not password or gender == "Gender" or governorate == "Governorate":
             messagebox.showerror("Missing Field", "Please fill all fields.")
             return
 

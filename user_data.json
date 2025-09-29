@@ -51,12 +51,12 @@
     },
     {
         "email": "mostafa@gmail.com",
-        "password": "123456",
-        "name": "Mostafa",
+        "password": "12345678",
+        "name": "Mostafa Yasser Sayed",
         "phone": "01065207540",
         "gender": "Male",
         "governorate": "Faiyum",
-        "age": "20",
-        "national_id": "30602042302176"
+        "age": "21",
+        "national_id": "30602042302119"
     }
 ]

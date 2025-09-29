@@ -1,8 +1,8 @@
 [
     {
-        "name": "Smartphone X",
+        "name": "Smartphone Y",
         "description": "Latest 5G smartphone",
-        "price": 699,
+        "price": 700.0,
         "orders": 50,
         "category": "Electronics"
     },
